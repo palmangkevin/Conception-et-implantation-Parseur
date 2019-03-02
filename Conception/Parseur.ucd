@@ -1,0 +1,266 @@
+MODEL Parseur
+CLASS loadFileButtonHandler
+ATTRIBUTES
+OPERATIONS
+	actionPerformed(e : ActionEvent) : void
+;
+
+CLASS parseFileButtonHandler
+ATTRIBUTES
+OPERATIONS
+	actionPerformed(e : ActionEvent) : void
+;
+
+CLASS metriquesSelectionHandler
+ATTRIBUTES
+OPERATIONS
+	valueChanged(e : ListSelectionEvent) : void
+;
+
+CLASS csvButtonHandler
+ATTRIBUTES
+OPERATIONS
+	actionPerformed(e : ActionEvent) : void
+;
+
+CLASS classesSelectionHandler
+ATTRIBUTES
+OPERATIONS
+	valueChanged(e : ListSelectionEvent) : void
+;
+
+CLASS centerPanelSelectionHandler
+ATTRIBUTES
+OPERATIONS
+	valueChanged(e : ListSelectionEvent) : void
+;
+
+CLASS aggregationsAssociationsSelectionHandler
+ATTRIBUTES
+OPERATIONS
+	valueChanged(e : ListSelectionEvent) : void
+;
+
+CLASS Argument
+ATTRIBUTES
+	name : String,
+	type : String
+OPERATIONS
+	Argument(name : String, type : String) : void,
+	getName() : String,
+	getType() : String
+;
+
+CLASS Attribute
+ATTRIBUTES
+	name : String,
+	type : String
+OPERATIONS
+	Attribute(name : String, type : String) : void,
+	getName() : String,
+	getType() : String,
+	toString() : String
+;
+
+CLASS Operation
+ATTRIBUTES
+	name : String,
+	type : String,
+	arguments : ArrayList
+OPERATIONS
+	Operation(name : String, type : String, args : ArrayList) : void,
+	getArguments() : ArrayList,
+	getName() : String,
+	getType() : String,
+	toString() : String
+;
+
+CLASS Role
+ATTRIBUTES
+	name : String,
+	multiplicity : String,
+	VALID_MULTIPLICITY : String
+OPERATIONS
+	Role(name : String, multiplicity : String) : void,
+	isMultiplicityValid (multiplicity : String) : boolean,
+	getName() : String,
+	getMultiplicity() : String
+;
+
+CLASS Association
+ATTRIBUTES
+	name : String,
+	premierRole : Role,
+	secondRole : Role
+OPERATIONS
+	Association(name : String, premierRole : Role, secondRole : Role) : void,
+	getPremierRole() : Role,
+	getSecondRole() : Role,
+	getName() : String
+;
+
+CLASS readFile
+ATTRIBUTES
+	fileContent : ArrayList
+OPERATIONS
+	readFile(file : File) : void,
+	ReadFile(file : File) : void,
+	get_fileContent() : ArrayList
+;
+
+CLASS Classe
+ATTRIBUTES
+	name : String,
+	attributes : ArrayList,
+	operations : ArrayList
+OPERATIONS
+	Classe(name : String) : void,
+	getName() : String,
+	addAttribute(attribute : Attribute) : void,
+	getAttributes() : ArrayList,
+	addOperation(a : Operation) : void,
+	getOperations() : ArrayList,
+	toString() : String
+;
+
+CLASS Generalization
+ATTRIBUTES
+	name : String,
+	subClasses : ArrayList
+OPERATIONS
+	Generalization (name : String, array : ArrayList) : void,
+	getName() : String,
+	getSubClasses() : ArrayList
+;
+
+CLASS Aggregation
+ATTRIBUTES
+	container : Role,
+	parts : ArrayList
+OPERATIONS
+	Aggregation(r : Role, roles : ArrayList) : void,
+	getContainer() : Role,
+	getParts() : ArrayList
+;
+
+CLASS Model
+ATTRIBUTES
+	name : String,
+	classes : ArrayList,
+	generalizations : ArrayList,
+	associations : ArrayList,
+	aggregations : ArrayList
+OPERATIONS
+	Model(name : String) : void,
+	getName() : String,
+	addClasse(c : Classe) : void,
+	getClasses(): ArrayList,
+	addGeneralization(a : Generalization) : void,
+	getGeneralizations() : ArrayList,
+	addAssociation(a : Association) : void,
+	getAssociations() : ArrayList,
+	addAggregation(a : Aggregation) : void,
+	getAggregations() : ArrayList
+;
+
+CLASS Metrique
+ATTRIBUTES
+	model : Model,
+	classe : Classe,
+	DEFINITIONS_METRIQUES : String
+OPERATIONS
+	Metrique(m : Model, s : String) : void,
+	findClasse(name : String) : Classe,
+	argumentsCompare(args1 : ArrayList, args2 : ArrList) : boolean,
+	operationsMerge(operations1 : ArrayList, operations2 : ArrayList) : ArrayList,
+	findParents(c : Classe) : ArrayList,
+	findChildren(c : Classe) : ArrayList,
+	getANA() : float,
+	getNOM() : int,
+	getNOM(c : Classe, operationArrayList : ArrayList) : int,
+	getNOA() : int,
+	getNOA(classe : Classe) : int,
+	getITC() : int,
+	getETC() : int,
+	getCAC() : int,
+	getCAC(c : Classe) : int,
+	getDIT() : int,
+	getDIT(c : Classe) : int,
+	getCLD() : int,
+	getCLD(c : Classe) : int,
+	getNOC() : int,
+	getNOC(c : Classe) : int,
+	getNOD() : int,
+	getNOD(c : Classe) : int
+;
+
+CLASS Parseur
+ATTRIBUTES
+	file : String,
+	fin : String,
+	motsCles : String,
+	fileContent : ArrayList,
+	model : Model,
+	index : int
+OPERATIONS
+	Parseur(fileContent : ArrayList) : void,
+	getModel() : Model,
+	nextIndex() : void,
+	endFileContent() : String,
+	initParseur() : void,
+	motsCles_notFound(s : String) : boolean,
+	validIdent(s : String) : boolean,
+	parseDeclarations() : void,
+	parseClasses() : void,
+	parseAttribute(c : Classe) : Classe,
+	parseOperations(c : Classe) : Classe,
+	parseArguments() : ArrayList,
+	parseAssociation() : void,
+	parseRole() : Role,
+	parseAggregation() : void,
+	parseGeneralization() : void
+;
+
+CLASS parser_view
+ATTRIBUTES
+	topPanel : JPanel,
+	classesPanel : JPanel,
+	attributsPanel : JPanel,
+	methodesPanel : JPanel,
+	sousClassesPanel : JPanel,
+	associationsAggregationsPanel : JPanel,
+	centerPanel : JPanel,
+	centerPanelContainer : JPanel,
+	detailsPanel : JPanel,
+	metriquesPanel : JPanel,
+	pathArea : JTextField,
+	detailsArea : JTextArea,
+	jfc : JFileChooser,
+	jfc_csv : JFileChooser,
+	classesList : JList,
+	attributsList : JList,
+	methodesList : JList,
+	sousClassesList : JList,
+	associationsAggregationsList : JList,
+	metriquesList : JList,
+	loadFileButton : JButton,
+	parseFileButton : JButton,
+	csvButton : JButton,
+	file : File,
+	read : readFile,
+	model : Model,
+	parseur : Parseur
+OPERATIONS
+	parser_view() : void,
+	initGUI() : void,
+	get_csv_file() : String,
+	getMetriques(metrique : Metrique) : ArrayList,
+	findSubClasses(a : Classe) : ArrayList,
+	findAssociationsAggregations(a : Classe) : DefaultListModel,
+	selectionClear(a : JList) : void,
+	part(s : String) : String,
+	container(s : String) : String,
+	aggregationDetails(s : String) : String,
+	associationDetails(s : String) : String,
+	main(args : String) : void
+;

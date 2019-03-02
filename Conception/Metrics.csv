@@ -1,0 +1,21 @@
+Classes/Metriques,Taille (NLOC),Taille (CLOC),ANA,NOM,NOA,ITC,ETC,CAC,DIT,CLD,NOC,NOD
+loadFileButtonHandler,10,0,1,1,0,0,0,0,0,0,0,0
+parseFileButtonHandler,24,1,1,1,0,0,0,0,0,0,0,0
+metriquesSelectionHandler,10,0,1,1,0,0,0,0,0,0,0,0
+csvButtonHandler,32,1,1,1,0,0,0,0,0,0,0,0
+classesSelectionHandler,17,0,1,1,0,0,0,0,0,0,0,0
+centerPanelSelectionHandler,7,0,1,1,0,0,0,0,0,0,0,0
+aggregationsAssociationsSelectionHandler,23,0,1,1,0,0,0,0,0,0,0,0
+Argument,21,17,0.67,3,2,0,0,0,0,0,0,0
+Attribute,24,21,0.5,4,2,0,1,0,0,0,0,0
+Operation,46,26,0.6,5,3,0,1,0,0,0,0,0
+Role,37,22,0.75,4,3,0,3,0,0,0,0,0
+Association,27,22,0.75,4,3,2,1,0,0,0,0,0
+readFile,55,17,0.67,3,1,0,0,0,0,0,0,0
+Classe,42,32,0.43,7,3,2,14,0,0,0,0,0
+Generalization,24,17,0.67,3,2,0,1,0,0,0,0,0
+Aggregation,23,17,0.67,3,2,1,1,0,0,0,0,0
+Model,58,44,0.5,10,5,4,1,0,0,0,0,0
+Metrique,298,121,0.74,23,3,10,1,0,0,0,0,0
+Parseur,431,76,0.31,16,6,2,0,0,0,0,0,0
+parser_view,532,120,0.75,12,27,3,0,0,0,0,0,0
